@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashi Beauty Saloon | Premium Bridal & Hair Salon in Lahore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --card-bg: #1a1a1a;
+            --accent: #e8b4b8; /* Soft Rose Gold/Blush */
+            --accent-glow: rgba(232, 180, 184, 0.2);
+            --text-main: #ffffff;
+            --text-muted: #b3b3b3;
+            --border: rgba(232, 180, 184, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Animated Ambient Backgrounds */
+        .glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: var(--accent);
+            filter: blur(180px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseGlow 6s infinite alternate ease-in-out;
+        }
+
+        .glow-2 {
+            top: 50%;
+            right: -10%;
+            background: #d4a373;
+            opacity: 0.1;
+            animation-delay: 3s;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(16px);
+            background: rgba(18, 18, 18, 0.85);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            animation: slideDown 0.8s ease forwards;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 220px 0 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .badge {
+            background: rgba(232, 180, 184, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            animation: slideUp 0.8s ease forwards;
+            opacity: 0;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: slideUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 700px;
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            animation: slideUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+            line-height: 1.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #121212;
+            font-weight: 600;
+            padding: 16px 36px;
+            border-radius: 40px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 25px var(--accent-glow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 35px var(--accent-glow);
+            background: #f0c5c8;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 16px 36px;
+            border-radius: 40px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(232, 180, 184, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Cards Grid Layout */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        .card:hover::before {
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: #222;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Reviews Custom Styling */
+        .stars {
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            font-size: 1.3rem;
+        }
+
+        .review-text {
+            color: #d1d5db;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .reviewer {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Info Section */
+        .info-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .info-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(232, 180, 184, 0.05);
+            border-color: var(--border);
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            background: rgba(232, 180, 184, 0.1);
+            color: var(--accent);
+            padding: 15px;
+            border-radius: 50%;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 480px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0.8) invert(1) contrast(1.2) hue-rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: #0a0a0a;
+            letter-spacing: 1px;
+        }
+
+        /* Keyframes */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.1; }
+            100% { transform: scale(1.2); opacity: 0.2; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .info-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: 160px 0 80px;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="glow" style="top: -10%; left: 10%;"></div>
+    <div class="glow glow-2"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo">Kashi <span>Beauty Saloon</span></div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://kashicosmetic.com" target="_blank">Cosmetics</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Proudly Women-Owned • 4.8 Rating (441 Reviews)
+        </div>
+        <h1>Elevate Your <br><span style="color: var(--accent); font-style: italic;">Natural Beauty</span></h1>
+        <p>Johar Town's premier beauty destination. We specialize in bespoke bridal makeup, flawless hair extensions, and professional aesthetic treatments by highly trained staff.</p>
+        <div class="btn-group">
+            <a href="tel:+923134747538" class="btn-primary">Book an Appointment</a>
+            <a href="https://kashicosmetic.com" target="_blank" class="btn-secondary">Shop Kashi Cosmetics</a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container section-padding">
+        <div class="section-title">
+            <h2>Our Expertise</h2>
+            <p>Performed by Professional Makeup Artists & Trained Staff</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Bridal Makeup</h3>
+                <p style="color: var(--text-muted); margin-top: 10px; line-height: 1.6;">Walk down the aisle with confidence. Our expert makeup artists create stunning, long-lasting bridal looks tailored to your unique features.</p>
+            </div>
+            <div class="card">
+                <h3>Hair Extensions & Styling</h3>
+                <p style="color: var(--text-muted); margin-top: 10px; line-height: 1.6;">Transform your locks instantly. We provide premium hair extensions, coloring, and styling services for a flawless, natural finish.</p>
+            </div>
+            <div class="card">
+                <h3>Cosmetics & Treatments</h3>
+                <p style="color: var(--text-muted); margin-top: 10px; line-height: 1.6;">Experience our exclusive line of Kashi Cosmetics alongside luxurious skin and hair treatments designed for glowing results.</p>
+                <a href="https://www.youtube.com" target="_blank" style="display: inline-block; margin-top: 15px; color: var(--accent); text-decoration: none; font-size: 0.9rem;">▶ Watch Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="container section-padding" style="background: rgba(255,255,255,0.01); border-radius: 24px; padding-left: 20px; padding-right: 20px;">
+        <div class="section-title">
+            <h2>Client Love</h2>
+            <p>WHAT OUR BEAUTIFUL CLIENTS SAY</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Good services sir ap ka kam but Acha ha. Absolutely loved the service and the premium quality delivered."</p>
+                <div class="reviewer">- Asim Noor</div>
+            </div>
+            <div class="card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Me na Hair ka kam kar way ha Sir Apna kam Buht Acha ha me buht khosha hou or sab ko kahou gi... zarur try karu, ap ko buht acha lag ga!"</p>
+                <div class="reviewer">- Subhan Muzmmal</div>
+            </div>
+            <div class="card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The highly trained staff and professional makeup artists made my big day truly special. The best salon experience in Johar Town by far."</p>
+                <div class="reviewer">- Verified Client</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map -->
+    <section id="contact" class="container section-padding">
+        <div class="info-wrapper">
+            <div class="info-details">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 10px; color: var(--accent);">Visit the Salon</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;">Step into luxury at our Johar Town location. Whether you are prepping for a wedding or need a touch-up, we are here for you.</p>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 8px; font-size: 1.1rem; color: #fff;">Address</strong>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Shop #50, Block H-2 Phase 2<br>Johar Town, Lahore, 54782, Pakistan</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 8px; font-size: 1.1rem; color: #fff;">Contact & Web</strong>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 5px;"><a href="tel:+923134747538" style="color: inherit; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#e8b4b8'" onmouseout="this.style.color='inherit'">+92 313 4747538</a></p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;"><a href="https://kashicosmetic.com" target="_blank" style="color: var(--accent); text-decoration: none;">kashicosmetic.com</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div>
+                        <strong style="display: block; margin-bottom: 8px; font-size: 1.1rem; color: #fff;">Working Hours</strong>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Opens 10:00 AM • Closes 9:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Johar Town Lahore Map -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13612.39967733454!2d74.2690184!3d31.4664878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919015f82b0b86f%3A0x2fcaf9fdeb3d02e6!2sJohar%20Town%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Kashi Beauty Saloon & Cosmetics. All rights reserved. | Proudly Women-Owned</p>
+        </div>
+    </footer>
+
+</body>
+</html>
